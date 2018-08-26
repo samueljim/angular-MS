@@ -1,0 +1,10 @@
+<!-- <button *ngFor="let row of squares" (click)="onClick(square)">{{square[0].id}}</button>-->
+<div id="grid">
+    <div *ngFor="let row of squares">
+        <button [ngStyle]="{'background-color': getColour(square.state)}"
+                *ngFor="let square of row"
+                (click)="onClick(square)">
+                {{square.bCount}}
+        </button>
+    </div>
+</div>
