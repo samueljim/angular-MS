@@ -17,28 +17,7 @@ export class GridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // Generate squares with 1 in 10 being a bomb
-    this.squares = []; // initialise squares
-    for(let i = 0; i < this.rows; i++) {
-      let row: SquareComponent[] = [];
-      for(let j = 0; j < this.columns; j++) {
-        let isBomb: string = 'o';        
-        if(Math.floor((Math.random() * 10) + 1) == 1){
-          isBomb = 'x';
-        }
-        row.push(new SquareComponent(isBomb,'',[i,j]));
-      }
-      this.squares.push(row);
-    }
-    // Assign surrounding bomb value to each non-bomb square
-    for(let i = 0; i < this.rows; i++) {
-      for(let j = 0; j < this.columns; j++) {
-        if(this.squares[i][j].state != 'x'){
-          this.squares[i][j].state = String(this.getNumBombs(this.squares[i][j]));
-        }
-      }
-    }
-
+    this.newGrid();
   }
 
   // Handles square click event
@@ -47,24 +26,27 @@ export class GridComponent implements OnInit {
       if(square.state == 'x'){
         this.lose();
         alert('You lose!');
+        // this.newGrid();
       }
       square.bCount = square.state;
     }else{
       square.state = 'm';
+      square.bCount = ' ';
     }
     this.clearSpread();
     this.edgeReveal();
     if(this.checkWin()){
       alert('You win!');
+      this.newGrid();
     }
   }
 
   // Returns a colour depending on button state
-  getColour (state: string) {
-    switch(state) {
+  getColour (bCount: string) {
+    switch(bCount) {
       case 'x':
         return 'red';
-      case 'm':
+      case ' ':
         return 'lightseagreen'
     }
   }
@@ -107,6 +89,7 @@ export class GridComponent implements OnInit {
             try {
               if(this.squares[i][j-1].state == 'm' || this.squares[i][j-1].bCount != '') {
                 this.squares[i][j].state = 'm';
+                this.squares[i][j].bCount = ' ';
                 finished = false;
               }
             }
@@ -114,6 +97,7 @@ export class GridComponent implements OnInit {
             try {
               if(this.squares[i][j+1].state == 'm' || this.squares[i][j+1].bCount != '') {
                 this.squares[i][j].state = 'm';
+                this.squares[i][j].bCount = ' ';
                 finished = false;
               }
             }
@@ -121,6 +105,7 @@ export class GridComponent implements OnInit {
             try {
               if(this.squares[i-1][j].state == 'm' || this.squares[i-1][j].bCount != '') {
                 this.squares[i][j].state = 'm';
+                this.squares[i][j].bCount = ' ';
                 finished = false;
               }
             }
@@ -128,6 +113,7 @@ export class GridComponent implements OnInit {
             try {
               if(this.squares[i+1][j].state == 'm' || this.squares[i+1][j].bCount != '') {
                 this.squares[i][j].state = 'm';
+                this.squares[i][j].bCount = ' ';
                 finished = false;
               }
             }
@@ -204,6 +190,31 @@ export class GridComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  // Generate a grid
+  newGrid() {
+    // Generate squares with 1 in 10 being a bomb
+    this.squares = []; // initialise squares
+    for(let i = 0; i < this.rows; i++) {
+      let row: SquareComponent[] = [];
+      for(let j = 0; j < this.columns; j++) {
+        let isBomb: string = 'o';        
+        if(Math.floor((Math.random() * 10) + 1) == 1){
+          isBomb = 'x';
+        }
+        row.push(new SquareComponent(isBomb,'',[i,j]));
+      }
+      this.squares.push(row);
+    }
+    // Assign surrounding bomb value to each non-bomb square
+    for(let i = 0; i < this.rows; i++) {
+      for(let j = 0; j < this.columns; j++) {
+        if(this.squares[i][j].state != 'x'){
+          this.squares[i][j].state = String(this.getNumBombs(this.squares[i][j]));
+        }
+      }
+    }
   }
 
 }
