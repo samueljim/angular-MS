@@ -10,8 +10,8 @@ import { SquareComponent } from '../square/square.component';
 export class GridComponent implements OnInit {
 
   squares: SquareComponent[][];
-  columns: number = 10;
-  rows: number = 10;
+  columns: number = 15;
+  rows: number = 15;
   gameOver: boolean = false;
 
   constructor() { }
@@ -22,7 +22,7 @@ export class GridComponent implements OnInit {
 
   // Handles square click event
   onClick (square: SquareComponent) {
-    if(square.state != '0'){
+    if(square.state != '0' && square.state != 'm'){
       if(square.state == 'x'){
         this.lose();
         alert('You lose!');
@@ -41,13 +41,20 @@ export class GridComponent implements OnInit {
     }
   }
 
+  onRightClick (square: SquareComponent) {
+    square.bCount = 'f';
+    return false;
+  }
+
   // Returns a colour depending on button state
   getColour (bCount: string) {
     switch(bCount) {
       case 'x':
         return 'red';
       case ' ':
-        return 'darkgrey'
+        return 'darkgrey';
+      case 'f':
+        return 'lightseagreen';      
     }
   }
 
