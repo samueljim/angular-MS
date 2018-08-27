@@ -12,6 +12,7 @@ export class GridComponent implements OnInit {
   squares: SquareComponent[][];
   columns: number = 10;
   rows: number = 10;
+  gameOver: boolean = false;
 
   constructor() { }
 
@@ -42,12 +43,20 @@ export class GridComponent implements OnInit {
 
   // Handles square click event
   onClick (square: SquareComponent) {
-    // console.log('state: ' + square.state +'\nid: '+ square.id);
-    // console.log(this.getNumBombs(square));
-    square.state = 'm';
+    if(square.state != '0'){
+      if(square.state == 'x'){
+        this.lose();
+        alert('You lose!');
+      }
+      square.bCount = square.state;
+    }else{
+      square.state = 'm';
+    }
     this.clearSpread();
     this.edgeReveal();
-    console.log(square.bCount);
+    if(this.checkWin()){
+      alert('You win!');
+    }
   }
 
   // Returns a colour depending on button state
@@ -96,28 +105,28 @@ export class GridComponent implements OnInit {
         for(let j = 0; j < this.columns; j++) {
           if(this.squares[i][j].state == '0') {
             try {
-              if(this.squares[i][j-1].state == 'm') {
+              if(this.squares[i][j-1].state == 'm' || this.squares[i][j-1].bCount != '') {
                 this.squares[i][j].state = 'm';
                 finished = false;
               }
             }
             catch(err) {}
             try {
-              if(this.squares[i][j+1].state == 'm') {
+              if(this.squares[i][j+1].state == 'm' || this.squares[i][j+1].bCount != '') {
                 this.squares[i][j].state = 'm';
                 finished = false;
               }
             }
             catch(err) {}
             try {
-              if(this.squares[i-1][j].state == 'm') {
+              if(this.squares[i-1][j].state == 'm' || this.squares[i-1][j].bCount != '') {
                 this.squares[i][j].state = 'm';
                 finished = false;
               }
             }
             catch(err) {}
             try {
-              if(this.squares[i+1][j].state == 'm') {
+              if(this.squares[i+1][j].state == 'm' || this.squares[i+1][j].bCount != '') {
                 this.squares[i][j].state = 'm';
                 finished = false;
               }
@@ -171,6 +180,30 @@ export class GridComponent implements OnInit {
         }
       }
     }
+  }
+
+  // Losing the game
+  lose() {
+    for(let i = 0; i < this.rows; i++) {
+      for(let j = 0; j < this.columns; j++) {
+        if(this.squares[i][j].state == 'x'){
+          this.squares[i][j].bCount = 'x';
+        }
+      }
+    }
+    this.gameOver = true;
+  }
+
+  // Check for winning conditions
+  checkWin() {
+    for(let i = 0; i < this.rows; i++) {
+      for(let j = 0; j < this.columns; j++) {
+        if(this.squares[i][j].bCount == '' && this.squares[i][j].state != 'x' && this.squares[i][j].state != 'm') {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
 }
