@@ -10,8 +10,8 @@ import { SquareComponent } from '../square/square.component';
 export class GridComponent implements OnInit {
 
   squares: SquareComponent[][];
-  columns: number = 15;
-  rows: number = 15;
+  columns: number = 20;
+  rows: number = 25;
   gameOver: boolean = false;
 
   constructor() { }
@@ -191,7 +191,7 @@ export class GridComponent implements OnInit {
   checkWin() {
     for(let i = 0; i < this.rows; i++) {
       for(let j = 0; j < this.columns; j++) {
-        if(this.squares[i][j].bCount == '' && this.squares[i][j].state != 'x' && this.squares[i][j].state != 'm') {
+        if(this.squares[i][j].bCount == '' && this.squares[i][j].state != 'x' && this.squares[i][j].state != 'm' && this.squares[i][j].state != 'f') {
           return false;
         }
       }
