@@ -47,7 +47,7 @@ export class GridComponent implements OnInit {
       case 'x':
         return 'red';
       case ' ':
-        return 'lightseagreen'
+        return 'darkgrey'
     }
   }
 
