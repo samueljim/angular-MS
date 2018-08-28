@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { SquareComponent } from '../square/square.component';
 
@@ -10,13 +10,24 @@ import { SquareComponent } from '../square/square.component';
 export class GridComponent implements OnInit {
 
   squares: SquareComponent[][];
-  columns: number = 20;
-  rows: number = 25;
   gameOver: boolean = false;
+  @Input() gridSize: number[];
+  columns: number;
+  rows: number;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.gridSize);
+    this.columns = this.gridSize[0];
+    this.rows = this.gridSize[1];
+    this.newGrid();
+  }
+  
+  ngOnChanges() {
+    console.log('change');
+    this.columns = this.gridSize[0];
+    this.rows = this.gridSize[1];
     this.newGrid();
   }
 

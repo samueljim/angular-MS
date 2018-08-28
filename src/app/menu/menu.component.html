@@ -1,12 +1,12 @@
 <div>
   <div>
-    <button>Easy (15x15)</button>
-    <button>Medium (20x20)</button>
-    <button>Hard (25x25)</button>
+    <button (click)="sendGridSize([15,15])">Easy (15x15)</button>
+    <button (click)="sendGridSize([20,20])">Medium (20x20)</button>
+    <button (click)="sendGridSize([25,25])">Hard (25x25)</button>
   </div>
   <div>
     <input type="text" placeholder="columns">
     <input type="text" placeholder="rows">
-    <button>Custom</button>
+    <button (click)="sendGridSize([30,30])">Custom</button>
   </div>
 </div>
