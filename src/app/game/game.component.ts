@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  size: number[] = [15,15];
+  size: number[] = [];
 
   constructor() { }
 

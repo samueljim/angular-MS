@@ -1,12 +1,12 @@
-<div>
+<div id="menu">
   <div>
-    <button (click)="sendGridSize([15,15])">Easy (15x15)</button>
-    <button (click)="sendGridSize([20,20])">Medium (20x20)</button>
-    <button (click)="sendGridSize([25,25])">Hard (25x25)</button>
+    <button (click)="sendGridSize('easy')">Easy (15x15)</button>
+    <button (click)="sendGridSize('medium')">Medium (20x20)</button>
+    <button (click)="sendGridSize('hard')">Hard (25x25)</button>
   </div>
   <div>
-    <input type="text" placeholder="columns">
-    <input type="text" placeholder="rows">
-    <button (click)="sendGridSize([30,30])">Custom</button>
+    <input type="text" placeholder="columns" #box1 (keyup)="setColumns(box1.value)">
+    <input type="text" placeholder="rows" #box2 (keyup)="setRows(box2.value)">
+    <button (click)="sendGridSize('custom')">Custom</button>
   </div>
 </div>
