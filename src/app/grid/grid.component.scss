@@ -16,3 +16,7 @@ button {
     background-color: $custom-cream;
     color: $custom-blue;
 }
+
+button:hover {
+    border-color: $custom-red;
+}

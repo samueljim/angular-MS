@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 
 
 @Component({
@@ -11,19 +11,20 @@ export class MenuComponent implements OnInit {
   gridSizeSelection: number[] = [10,10]; // default size
 
   @Output() sizeEvent: EventEmitter<number[]> = new EventEmitter();
+  @Output() gridShowEvent: EventEmitter<boolean> = new EventEmitter();
 
   gridSize: number[] = [];
   customColumns: number = 0;
   customRows: number = 0;
-  hidden: boolean = false;
+  // @Input() menuHidden: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  sendGridSize(size: string) {
-    console.log('size ' + size);
+  sendGridSize (size: string) {
+    // console.log('size ' + size);
     switch(size) {
       case 'easy':
         this.gridSize = [15,15];
@@ -38,7 +39,8 @@ export class MenuComponent implements OnInit {
         this.gridSize = [this.customColumns, this.customRows];
         break;
     }
-    this.hidden = true;
+    // this.menuHidden = true;
+    // this.sendGridShow();
     this.sizeEvent.emit(this.gridSize);
   }
 
@@ -48,15 +50,6 @@ export class MenuComponent implements OnInit {
 
   setRows(value: string) {
     this.customRows = parseInt(value);
-  }
-
-   // Hides elements
-   isHidden (){
-    if(this.hidden) {
-      return 'none';
-    }else {
-      return '';
-    }
   }
 
 }

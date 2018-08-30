@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges,  Output, EventEmitter} from '@angular/core';
 
 import { SquareComponent } from '../square/square.component';
 
@@ -9,28 +9,30 @@ import { SquareComponent } from '../square/square.component';
 })
 export class GridComponent implements OnInit {
 
+  // @Output() menuShowEvent: EventEmitter<boolean> = new EventEmitter();
   squares: SquareComponent[][];
   gameOver: boolean = false;
   @Input() gridSize: number[];
   columns: number;
   rows: number;
-  hidden: boolean = false;
+  // @Input() gridHidden: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.gridSize);
+    // console.log(this.gridSize);
     this.columns = this.gridSize[0];
     this.rows = this.gridSize[1];
     this.newGrid();
   }
   
   ngOnChanges() {
-    console.log('change');
+    // console.log('change');
     this.columns = this.gridSize[0];
     this.rows = this.gridSize[1];
     this.newGrid();
   }
+
 
   // Handles square click event
   onClick (square: SquareComponent) {
@@ -49,7 +51,6 @@ export class GridComponent implements OnInit {
     this.edgeReveal();
     if(this.checkWin()){
       alert('You win!');
-      this.newGrid();
     }
   }
 
@@ -67,15 +68,6 @@ export class GridComponent implements OnInit {
         return 'darkgrey';
       case 'f':
         return '#EE964B';      
-    }
-  }
-
-  // Hides elements
-  isHidden (){
-    if(this.hidden) {
-      return 'none';
-    }else {
-      return '';
     }
   }
 

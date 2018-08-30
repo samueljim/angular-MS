@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class GameComponent implements OnInit {
 
   size: number[] = [];
+  mHidden: boolean = false;
+  gHidden: boolean = true;
 
   constructor() { }
 
@@ -16,7 +18,6 @@ export class GameComponent implements OnInit {
 
   setGridSize(gridSize: number[]) {
     this.size = gridSize;
-    console.log('parent: '+ this.size);
   }
 
 }

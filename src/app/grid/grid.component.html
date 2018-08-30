@@ -1,6 +1,6 @@
 <div id="grid">
     <div *ngFor="let row of squares" >
-        <button [ngStyle]="{'background-color': getColour(square.bCount), 'display': isHidden()}"
+        <button [ngStyle]="{'background-color': getColour(square.bCount)}"
                 *ngFor="let square of row"
                 (contextmenu)="onRightClick(square)"
                 (click)="onClick(square)">
