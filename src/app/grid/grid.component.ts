@@ -62,11 +62,11 @@ export class GridComponent implements OnInit {
   getColour (bCount: string) {
     switch(bCount) {
       case 'x':
-        return 'red';
+        return '#F95738';
       case ' ':
         return 'darkgrey';
       case 'f':
-        return 'lightseagreen';      
+        return '#EE964B';      
     }
   }
 
