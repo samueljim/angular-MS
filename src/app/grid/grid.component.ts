@@ -14,6 +14,7 @@ export class GridComponent implements OnInit {
   @Input() gridSize: number[];
   columns: number;
   rows: number;
+  hidden: boolean = false;
 
   constructor() { }
 
@@ -68,6 +69,16 @@ export class GridComponent implements OnInit {
         return 'lightseagreen';      
     }
   }
+
+  // Hides elements
+  isHidden (){
+    if(this.hidden) {
+      return 'none';
+    }else {
+      return '';
+    }
+  }
+
 
   // Converts a number into a coordinate based on grid width
   numberToCoord (square: number) {

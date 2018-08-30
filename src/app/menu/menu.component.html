@@ -1,12 +1,12 @@
-<div id="menu">
-  <div>
-    <button (click)="sendGridSize('easy')">Easy (15x15)</button>
-    <button (click)="sendGridSize('medium')">Medium (20x20)</button>
-    <button (click)="sendGridSize('hard')">Hard (25x25)</button>
+<div id="menu" [ngStyle]="{'display': isHidden()}">
+  <div id="defaults">
+    <button class="button" (click)="sendGridSize('easy')"><h3>Easy (15x15)</h3></button>
+    <button class="button" (click)="sendGridSize('medium')"><h3>Medium (20x20)</h3></button>
+    <button class="button" (click)="sendGridSize('hard')"><h3>Hard (25x25)</h3></button>
   </div>
-  <div>
-    <input type="text" placeholder="columns" #box1 (keyup)="setColumns(box1.value)">
-    <input type="text" placeholder="rows" #box2 (keyup)="setRows(box2.value)">
-    <button (click)="sendGridSize('custom')">Custom</button>
+  <div id="custom">
+    <input class="textbox" type="text" placeholder="columns" #box1 (keyup)="setColumns(box1.value)">
+    <input class="textbox" type="text" placeholder="rows" #box2 (keyup)="setRows(box2.value)">
+    <button class="button" (click)="sendGridSize('custom')"><h3>Custom</h3></button>
   </div>
 </div>

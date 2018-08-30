@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+// colours
+$custom-blue: #0D3B66;
+$custom-cream: #FAF0CA;
+$custom-yellow: #F4D35E;
+$custom-orange: #EE964B;
+$custom-red: #F95738;
+
+
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: $custom-blue;
+}
+
+h1 {
+    color: $custom-cream;
+}

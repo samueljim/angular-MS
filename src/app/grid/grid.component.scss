@@ -1,9 +1,12 @@
+@import "../../styles.scss";
+
 #grid {
     width: max-content;
     margin: 0 auto;
 }
 
 button {
+    // display: none;
     float: left;
     width: 30px;
     height: 30px;

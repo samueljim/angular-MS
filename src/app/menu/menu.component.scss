@@ -1,4 +1,50 @@
+@import "../../styles.scss";
+
 #menu {
-    width: max-content;
+    
+    width: min-content;
+    justify-content: center;
     margin: 0 auto;
+}
+
+#defaults {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+}
+
+#custom {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: $custom-cream;
+    color: $custom-blue;
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    margin: 10px;
+    // width: 100%;
+}
+
+.textbox {
+    font-family: 'Press Start 2P', cursive;
+    background-color: $custom-cream;
+    color: $custom-blue;
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px;
+    text-align: center;
+}
+
+.button:hover {
+    background: $custom-orange;
+    border-color: $custom-yellow;
 }

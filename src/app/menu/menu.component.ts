@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   gridSize: number[] = [];
   customColumns: number = 0;
   customRows: number = 0;
+  hidden: boolean = false;
 
   constructor() { }
 
@@ -37,6 +38,7 @@ export class MenuComponent implements OnInit {
         this.gridSize = [this.customColumns, this.customRows];
         break;
     }
+    this.hidden = true;
     this.sizeEvent.emit(this.gridSize);
   }
 
@@ -46,6 +48,15 @@ export class MenuComponent implements OnInit {
 
   setRows(value: string) {
     this.customRows = parseInt(value);
+  }
+
+   // Hides elements
+   isHidden (){
+    if(this.hidden) {
+      return 'none';
+    }else {
+      return '';
+    }
   }
 
 }
