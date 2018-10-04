@@ -1,6 +1,6 @@
 {
   "name": "sweeper",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -43,6 +43,44 @@
     "protractor": "~5.4.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-chai-friendly": "^0.4.0",
+    "eslint-plugin-import": "^2.9.0",
+    "prettier": "^1.12.1",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-preset-env": "^1.6.1"
+  },
+   "eslintConfig": {
+    "extends": "plugin:prettier/recommended",
+    "parser": "babel-eslint",
+    "rules": {
+      "prettier/prettier": "error",
+      "comma-dangle": 0,
+      "linebreak-style": 0,
+      "consistent-return": 0,
+      "no-param-reassign": 0,
+      "no-underscore-dangle": 0,
+      "no-shadow": 0,
+      "no-console": 0,
+      "no-plusplus": 0,
+      "no-unused-expressions": 0,
+      "chai-friendly/no-unused-expressions": 2
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "mocha": true,
+      "node": true
+    },
+    "plugins": [
+      "import",
+      "chai-friendly",
+      "prettier"
+    ]
   }
 }
